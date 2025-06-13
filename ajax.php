@@ -345,6 +345,35 @@ case 'payrmb':
 	if(!$islogin2)exit(json_encode(['code'=>-4,'msg'=>'您还未登录','debug'=>'notlogin','debug_version'=>'20240529a']));
 	$orderid=isset($_POST['orderid'])?daddslashes($_POST['orderid']):exit(json_encode(['code'=>-1,'msg'=>'订单号未知','debug'=>'no_orderid','debug_version'=>'20240529a']));
 	$srow=$DB->getRow("SELECT * FROM shua_pay WHERE trade_no=:orderid LIMIT 1", [':orderid'=>$orderid]);
+	
+	// 金融订单补全
+	if(isset($srow['tid']) && $srow['tid'] == -5){
+		$inputArr = explode('|', $srow['input']);
+		$news_id = intval($inputArr[0]);
+		$news = $DB->getRow("SELECT * FROM shua_news WHERE id='$news_id' LIMIT 1");
+		if($news){
+			$srow['name'] = $news['title'];
+			$srow['desc'] = $news['desc'];
+			$srow['img'] = $news['cover_url'];
+			$srow['price'] = $news['price'];
+			$srow['news_id'] = $news_id;
+		}
+	}
+	
+	// 资源市场订单补全
+	if(isset($srow['tid']) && $srow['tid'] == -6){
+		$inputArr = explode('|', $srow['input']);
+		$goods_id = intval($inputArr[0]);
+		$goods = $DB->getRow("SELECT * FROM shua_goods WHERE id='$goods_id' LIMIT 1");
+		if($goods){
+			$srow['name'] = $goods['name'];
+			$srow['desc'] = $goods['content'];
+			$srow['img'] = $goods['image'];
+			$srow['price'] = $goods['price'];
+			$srow['goods_id'] = $goods_id;
+		}
+	}
+	
 	// 影视订单补全
 	if(isset($srow['tid']) && $srow['tid'] == -4){
 		$inputArr = explode('|', $srow['input']);
@@ -372,6 +401,69 @@ case 'payrmb':
 		if($DB->exec("UPDATE `shua_site` SET `rmb`=`rmb`-'{$srow['money']}' WHERE `zid`='{$userrow['zid']}'") && $DB->exec("UPDATE `shua_pay` SET `type`='rmb',`status`='1',`zid`='{$userrow['zid']}',`endtime`=NOW() WHERE `trade_no`='{$orderid}'")){
 			$srow['type'] = 'rmb';
 			$payorder=$DB->getRow("SELECT * FROM shua_pay WHERE trade_no='{$orderid}' LIMIT 1");
+			
+			// 处理金融资讯订单
+			if($srow['tid'] == -5 && isset($srow['news_id'])){
+				$news_id = $srow['news_id'];
+				$check_order = $DB->getRow("SELECT * FROM shua_finance_order WHERE zid='{$userrow['zid']}' AND news_id='$news_id' LIMIT 1");
+				if(!$check_order){
+					$DB->exec("INSERT INTO shua_finance_order (zid, news_id, price, status, addtime) VALUES ('{$userrow['zid']}', '$news_id', '{$srow['money']}', 1, NOW())");
+				}
+				addPointRecord($userrow['zid'], $srow['money'], '消费', '购买金融资讯：'.$srow['name'], $orderid);
+				exit(json_encode(['code'=>1,'msg'=>'金融资讯购买成功！','orderid'=>$orderid,'debug'=>'ok','debug_version'=>'20240529a']));
+			}
+			
+			// 处理资源市场订单
+			if($srow['tid'] == -6 && isset($srow['goods_id'])){
+				$goods_id = $srow['goods_id'];
+				$check_order = $DB->getRow("SELECT * FROM shua_orders WHERE zid='{$userrow['zid']}' AND tid='$goods_id' LIMIT 1");
+				if(!$check_order){
+					$DB->exec("INSERT INTO shua_orders (trade_no, tid, zid, input, num, name, money, ip, userid, addtime, status) VALUES ('$orderid', '$goods_id', '{$userrow['zid']}', '资源购买', 1, '{$srow['name']}', '{$srow['money']}', '{$clientip}', '{$cookiesid}', NOW(), 1)");
+				}
+				addPointRecord($userrow['zid'], $srow['money'], '消费', '购买资源：'.$srow['name'], $orderid);
+				exit(json_encode(['code'=>1,'msg'=>'资源购买成功！','orderid'=>$orderid,'debug'=>'ok','debug_version'=>'20240529a']));
+			}
+			
+			// 处理金融会员订单
+			if($srow['tid'] == -7){
+				$vip_type = $srow['input'];
+				$duration_type = $vip_type;
+				$expire_date = null;
+				
+				if($duration_type != 'forever'){
+					switch($vip_type){
+						case 'month':
+							$expire_date = date('Y-m-d', strtotime('+1 month'));
+							break;
+						case 'season':
+							$expire_date = date('Y-m-d', strtotime('+3 months'));
+							break;
+						case 'year':
+							$expire_date = date('Y-m-d', strtotime('+1 year'));
+							break;
+					}
+				}
+				
+				// 更新用户金融会员状态
+				$update_sql = "UPDATE `shua_site` SET `finance_vip_level`=1, `finance_vip_expire_type`=:duration_type";
+				$update_data = [':duration_type' => $duration_type];
+				
+				if($duration_type != 'forever'){
+					$update_sql .= ", `finance_vip_expire`=:expire_date";
+					$update_data[':expire_date'] = $expire_date;
+				} else {
+					$update_sql .= ", `finance_vip_level`=9"; // 永久VIP
+				}
+				
+				$update_sql .= " WHERE `zid`=:zid";
+				$update_data[':zid'] = $userrow['zid'];
+				
+				$DB->exec($update_sql, $update_data);
+				
+				addPointRecord($userrow['zid'], $srow['money'], '消费', '开通金融会员：'.$srow['name'], $orderid);
+				exit(json_encode(['code'=>1,'msg'=>'金融会员开通成功！','orderid'=>$orderid,'debug'=>'ok','debug_version'=>'20240529a']));
+			}
+			
 			if($payorder['name']=='自助开通分站' || $payorder['name']=='自助开通站点'){
 			    
 			     if ($srow['tid'] == -2) {
@@ -906,6 +998,77 @@ case 'getleftcount':
 	exit(json_encode($result));
 	break;
 case 'pay':
+	// 金融系统下单处理
+	if(isset($_POST['tid']) && (strpos($_POST['tid'], 'finance_') === 0 || strpos($_POST['tid'], 'goods_') === 0)){
+		$finance_type = strpos($_POST['tid'], 'finance_') === 0 ? 'news' : 'goods';
+		$resource_id = intval(str_replace(['finance_', 'goods_'], '', $_POST['tid']));
+		
+		if($finance_type == 'news'){
+			// 金融资讯购买
+			$news = $DB->getRow("SELECT * FROM shua_news WHERE id='$resource_id' AND status=1 LIMIT 1");
+			if(!$news) exit(json_encode(['code'=>-2,'msg'=>'该资讯不存在','debug_version'=>'20240529a']));
+			
+			// 检查是否已购买
+			if($islogin2){
+				$check_order = $DB->getRow("SELECT * FROM shua_finance_order WHERE zid='{$userrow['zid']}' AND news_id='$resource_id' AND status=1 LIMIT 1");
+				if($check_order) exit(json_encode(['code'=>-1,'msg'=>'您已购买过该资讯，请勿重复购买！','debug_version'=>'20240529a']));
+			}
+			
+			$price = floatval($news['price']);
+			$name = '购买金融资讯：' . $news['title'];
+			$tid = -5; // 金融资讯专用tid
+			$input = $resource_id;
+		}elseif($finance_type == 'goods'){
+			// 资源市场购买
+			$goods = $DB->getRow("SELECT * FROM shua_goods WHERE id='$resource_id' AND status=1 LIMIT 1");
+			if(!$goods) exit(json_encode(['code'=>-2,'msg'=>'该资源不存在','debug_version'=>'20240529a']));
+			
+			// 检查是否已购买
+			if($islogin2){
+				$check_order = $DB->getRow("SELECT * FROM shua_orders WHERE zid='{$userrow['zid']}' AND tid='$resource_id' AND status=1 LIMIT 1");
+				if($check_order) exit(json_encode(['code'=>-1,'msg'=>'您已购买过该资源，请勿重复购买！','debug_version'=>'20240529a']));
+			}
+			
+			$price = floatval($goods['price']);
+			$name = '购买资源：' . $goods['name'];
+			$tid = -6; // 资源市场专用tid
+			$input = $resource_id;
+		}
+		
+		if(($conf['forcermb']==1 || $conf['forcelogin']==1) && !$islogin2) exit(json_encode(['code'=>4,'msg'=>'您还未登录','debug_version'=>'20240529a']));
+		
+		$need = round($price, 2);
+		$num = 1;
+		$trade_no = date("YmdHis").rand(111,999);
+		
+		if($need == 0){
+			exit(json_encode(['code'=>-1,'msg'=>'免费资源请直接查看','debug_version'=>'20240529a']));
+		}
+		
+		$sql = "INSERT INTO `shua_pay` (`trade_no`,`tid`,`zid`,`input`,`num`,`name`,`money`,`ip`,`userid`,`inviteid`,`addtime`,`status`) VALUES (:trade_no, :tid, :zid, :input, :num, :name, :money, :ip, :userid, :inviteid, NOW(), 0)";
+		$data = [
+			':trade_no' => $trade_no,
+			':tid' => $tid,
+			':zid' => $siterow['zid'] ? $siterow['zid'] : 1,
+			':input' => $input,
+			':num' => $num,
+			':name' => $name,
+			':money' => $need,
+			':ip' => $clientip,
+			':userid' => $cookiesid,
+			':inviteid' => $invite_id
+		];
+		
+		if($DB->exec($sql, $data)){
+			if($conf['forcermb']==1){$conf['alipay_api']=0;$conf['wxpay_api']=0;$conf['qqpay_api']=0;}
+			$result = ['code'=>0, 'msg'=>'提交订单成功！', 'trade_no'=>$trade_no, 'need'=>$need, 'pay_alipay'=>$conf['alipay_api'], 'pay_wxpay'=>$conf['wxpay_api'], 'pay_qqpay'=>$conf['qqpay_api'], 'pay_rmb'=>$islogin2, 'user_rmb'=>$userrow['rmb'], 'paymsg'=>$conf['paymsg'], 'debug_version'=>'20240529a'];
+			exit(json_encode($result));
+		}else{
+			exit(json_encode(['code'=>-1,'msg'=>'提交订单失败！'.$DB->error(),'debug_version'=>'20240529a']));
+		}
+	}
+	
+	// 原有的商品下单逻辑
 	$method=$_GET['method'];
 	$inputvalue=htmlspecialchars(trim(strip_tags(daddslashes($_POST['inputvalue']))));
 	$inputvalue2=htmlspecialchars(trim(strip_tags(daddslashes($_POST['inputvalue2']))));

@@ -60,54 +60,6 @@ if($user){
     }
 }
 
-// 购买逻辑，只有在点击购买时才判断是否登录
-if(
-    $_SERVER['REQUEST_METHOD'] === 'POST' &&
-    isset($_POST['action']) && $_POST['action'] === 'buy'
-) {
-    if(!$user){
-        echo '<script>alert("请先登录后再购买！");location.href="/user/login.php";</script>';
-        exit;
-    }
-    $user_id = $user['zid'];
-    // 下单日志
-    file_put_contents(__DIR__.'/../logs/monitor.log', date('Y-m-d H:i:s') . ' [goodsdetail.php] 下单 user_id=' . $user_id . ' goods_id=' . $id . PHP_EOL, FILE_APPEND);
-    // 下单
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, '/ajax.php?act=pay');
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-        'tid' => 'goods_'.$id, // 以goods_前缀区分商品
-        'num' => 1,
-        'inputvalue' => '金融商品',
-        'goods_id' => $id,
-        'user_id' => $user_id
-    ]));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $res = curl_exec($ch);
-    curl_close($ch);
-    $res = json_decode($res, true);
-    if($res && $res['code'] === 0 && $res['trade_no']){
-        // 余额支付
-        $ch2 = curl_init();
-        curl_setopt($ch2, CURLOPT_URL, '/ajax.php?act=payrmb');
-        curl_setopt($ch2, CURLOPT_POST, 1);
-        curl_setopt($ch2, CURLOPT_POSTFIELDS, http_build_query(['orderid' => $res['trade_no']]));
-        curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
-        $payres = curl_exec($ch2);
-        curl_close($ch2);
-        $payres = json_decode($payres, true);
-        if($payres && $payres['code'] === 1){
-            echo '<script>alert("购买成功！");location.reload();</script>';
-            exit;
-        }else{
-            echo '<script>alert("'.$payres['msg'].'");</script>';
-        }
-    }else{
-        echo '<script>alert("'.$res['msg'].'");</script>';
-    }
-}
-
 // 读取底部导航
 $nav = $DB->fetchAll("SELECT * FROM `{$dbconfig['dbqz']}_news_nav` WHERE status=1 ORDER BY sort DESC, id ASC");
 
@@ -300,10 +252,7 @@ try {
                     <?php elseif(!$can_buy): ?>
                         <button class="btn btn-secondary btn-block" disabled>不可购买</button>
                     <?php else: ?>
-                        <form method="post" style="display:inline;">
-                            <input type="hidden" name="action" value="buy">
-                            <button type="submit" class="btn btn-primary btn-block" onclick="return buyCheck();"><i class="fas fa-shopping-cart mr-1"></i>购买</button>
-                        </form>
+                        <button type="button" class="btn btn-primary btn-block" onclick="return buyCheck() && processBuy();"><i class="fas fa-shopping-cart mr-1"></i>购买</button>
                     <?php endif; ?>
                 </div>
             </div>
@@ -340,6 +289,32 @@ try {
         return false;
         <?php endif; ?>
         return true;
+    }
+    
+    // 添加购买处理函数
+    function processBuy() {
+        var goodsId = <?php echo json_encode($id); ?>;
+        
+        // 使用主系统的下单接口
+        $.post('/ajax.php?act=pay', {
+            tid: 'goods_' + goodsId,
+        }, function(res){
+            if(typeof res === 'string') try{res=JSON.parse(res);}catch(e){}
+            if(res.code === 0 && res.trade_no){
+                // 余额支付
+                $.post('/ajax.php?act=payrmb', {orderid: res.trade_no}, function(payres){
+                    if(typeof payres === 'string') try{payres=JSON.parse(payres);}catch(e){}
+                    if(payres.code === 1){
+                        alert('购买成功！');
+                        location.reload();
+                    }else{
+                        alert(payres.msg||'余额支付失败');
+                    }
+                });
+            }else{
+                alert(res.msg||'下单失败');
+            }
+        }, 'json');
     }
     </script>
 </body>
