@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_substation</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="开通分销" transform="translate(-60.000000, -572.000000)">
+            <g id="1" transform="translate(39.000000, 572.000000)">
+                <g id="icon_substation" transform="translate(21.000000, 0.000000)">
+                    <circle id="椭圆形" fill="#FFF4EE" cx="45" cy="45" r="45"></circle>
+                    <g id="编组-3" transform="translate(26.000000, 27.000000)" stroke-width="3">
+                        <polyline id="路径-25" stroke="#FF6F26" stroke-linecap="round" stroke-linejoin="round" points="6.14285714 25.65 6.14285714 17.15 31.8571429 17.15 31.8571429 25.65"></polyline>
+                        <line x1="19" y1="10.35" x2="19" y2="17.15" id="路径-26" stroke="#FF6F26"></line>
+                        <rect id="矩形" stroke="#303133" x="14.3571429" y="1.5" width="9" height="9" rx="2"></rect>
+                        <rect id="矩形备份-4" stroke="#303133" x="1.5" y="26.3" width="9" height="9" rx="2"></rect>
+                        <rect id="矩形备份-5" stroke="#303133" x="27.2142857" y="26.3" width="9" height="9" rx="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

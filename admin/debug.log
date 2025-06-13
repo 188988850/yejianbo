@@ -1,0 +1,70 @@
+2025-05-23 21:26:15 setCronJob: {"mode":"daily","duration_limit":"10","auto_stop":true,"time":"00:00"}
+2025-05-23 21:26:15 saveCronJobs success
+2025-05-23 21:26:15 saveCronStatuses success
+2025-05-23 21:26:15 exec delayed_start: 9225 8ba7f88f4fc71c53
+2025-05-23 21:26:15 setCronJob done: {"code":0,"message":"\u5b9a\u65f6\u4efb\u52a1\u5df2\u4fdd\u5b58","id":"8ba7f88f4fc71c53"}
+2025-05-23 21:39:23 setCronJob: {"mode":"daily","duration_limit":"20","auto_stop":true,"time":"01:00"}
+2025-05-23 21:39:23 saveCronJobs success
+2025-05-23 21:39:23 saveCronStatuses success
+2025-05-23 21:39:23 exec delayed_start: 12037 324f4bec427f36b4
+2025-05-23 21:39:23 setCronJob done: {"code":0,"message":"\u5b9a\u65f6\u4efb\u52a1\u5df2\u4fdd\u5b58","id":"324f4bec427f36b4"}
+2025-05-23 21:47:05 saveCronJobs success
+2025-05-23 21:47:05 saveCronStatuses success
+2025-05-23 21:47:09 saveCronJobs success
+2025-05-23 21:47:09 saveCronStatuses success
+2025-05-23 21:47:13 saveCronJobs success
+2025-05-23 21:47:13 saveCronStatuses success
+2025-05-23 21:47:16 saveCronJobs success
+2025-05-23 21:47:16 saveCronStatuses success
+2025-05-23 21:47:41 saveCronJobs success
+2025-05-23 21:47:41 saveCronStatuses success
+2025-05-23 21:48:01 setCronJob: {"mode":"daily","duration_limit":"20","auto_stop":true,"time":"00:00"}
+2025-05-23 21:48:01 saveCronJobs success
+2025-05-23 21:48:01 saveCronStatuses success
+2025-05-23 21:48:01 exec delayed_start: 7919 eb1048bea8f5bee5
+2025-05-23 21:48:01 setCronJob done: {"code":0,"message":"\u5b9a\u65f6\u4efb\u52a1\u5df2\u4fdd\u5b58","id":"eb1048bea8f5bee5"}
+2025-05-23 21:50:52 saveCronJobs success
+2025-05-23 21:50:52 saveCronStatuses success
+2025-05-23 22:02:58 saveCronJobs success
+2025-05-23 22:02:58 saveCronStatuses success
+2025-05-23 22:04:40 saveCronJobs success
+2025-05-23 22:04:40 saveCronStatuses success
+2025-05-23 22:04:49 setCronJob: {"mode":"daily","duration_limit":"20","auto_stop":true,"time":"00:00"}
+2025-05-23 22:04:49 saveCronJobs success
+2025-05-23 22:04:49 saveCronStatuses success
+2025-05-23 22:04:49 exec delayed_start: 6911 b371b71cc9e75beb
+2025-05-23 22:04:49 setCronJob done: {"code":0,"message":"\u5b9a\u65f6\u4efb\u52a1\u5df2\u4fdd\u5b58","id":"b371b71cc9e75beb"}
+2025-05-23 22:04:52 saveCronStatuses success
+2025-05-23 22:04:52 startCollectorNow: b371b71cc9e75beb /www/server/php/74/bin/php '/www/wwwroot/bbscs.xyz/admin/../template/storenews/collector.php' > '/www/wwwroot/bbscs.xyz/admin/../logs/collection.log' 2>&1 &
+2025-05-23 22:18:39 saveCronStatuses success
+2025-05-23 22:18:39 startCollectorNow: b371b71cc9e75beb /www/server/php/74/bin/php '/www/wwwroot/bbscs.xyz/admin/../template/storenews/collector.php' > '/www/wwwroot/bbscs.xyz/admin/../logs/collection.log' 2>&1 &
+2025-05-23 22:31:22 saveCronStatuses success
+2025-05-23 22:39:12 saveCronStatuses success
+2025-05-23 22:39:12 startCollectorNow: b371b71cc9e75beb /www/server/php/74/bin/php '/www/wwwroot/bbscs.xyz/admin/../template/storenews/collector.php' > '/www/wwwroot/bbscs.xyz/admin/../logs/collection.log' 2>&1 &
+2025-05-23 22:39:20 saveCronStatuses success
+2025-05-23 22:39:38 setCronJob: {"mode":"daily","duration_limit":"1","auto_stop":true,"time":"00:00"}
+2025-05-23 22:39:38 saveCronJobs success
+2025-05-23 22:39:38 saveCronStatuses success
+2025-05-23 22:39:38 exec delayed_start: 4822 2042a15096cafd8f
+2025-05-23 22:39:38 setCronJob done: {"code":0,"message":"\u5b9a\u65f6\u4efb\u52a1\u5df2\u4fdd\u5b58","id":"2042a15096cafd8f"}
+2025-05-23 22:39:43 saveCronJobs success
+2025-05-23 22:39:43 saveCronStatuses success
+2025-05-23 23:15:17 saveCronJobs success
+2025-05-23 23:15:17 saveCronStatuses success
+2025-05-23 23:15:31 setCronJob: {"mode":"daily","duration_limit":"10","auto_stop":true,"time":"01:00"}
+2025-05-23 23:15:31 saveCronJobs success
+2025-05-23 23:15:31 saveCronStatuses success
+2025-05-23 23:15:31 exec delayed_start: 6269 3357bd57815f2e04
+2025-05-23 23:15:31 setCronJob done: {"code":0,"message":"\u5b9a\u65f6\u4efb\u52a1\u5df2\u4fdd\u5b58","id":"3357bd57815f2e04"}
+2025-05-23 23:45:01 setCronJob: {"mode":"daily","duration_limit":"20","auto_stop":true,"time":"01:00"}
+2025-05-23 23:45:01 saveCronJobs success
+2025-05-23 23:45:01 saveCronStatuses success
+2025-05-23 23:45:01 exec delayed_start: 4499 b761812680ce148c
+2025-05-23 23:45:01 setCronJob done: {"code":0,"message":"\u5b9a\u65f6\u4efb\u52a1\u5df2\u4fdd\u5b58","id":"b761812680ce148c"}
+2025-05-23 23:45:04 saveCronStatuses success
+2025-05-24 11:54:51 setCronJob: {"mode":"daily","duration_limit":"20","auto_stop":true,"time":"01:00"}
+2025-05-24 11:54:51 saveCronJobs success
+2025-05-24 11:54:51 saveCronStatuses success
+2025-05-24 11:54:51 exec delayed_start: 47109 c9721c2d1ad0fae6
+2025-05-24 11:54:51 setCronJob done: {"code":0,"message":"\u5b9a\u65f6\u4efb\u52a1\u5df2\u4fdd\u5b58","id":"c9721c2d1ad0fae6"}
+2025-05-24 11:54:55 saveCronStatuses success

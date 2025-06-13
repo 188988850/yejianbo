@@ -1,0 +1,139 @@
+/* 系统监控样式 */
+.monitor-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.monitor-card {
+    background: var(--light-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.monitor-card h3 {
+    margin: 0 0 15px 0;
+    color: var(--primary-color);
+}
+
+.monitor-chart {
+    position: relative;
+    height: 200px;
+    margin-bottom: 15px;
+}
+
+.monitor-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 10px;
+    background: var(--secondary-color);
+    border-radius: 5px;
+    color: white;
+}
+
+.stat-item .label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.stat-item .value {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* 错误日志样式 */
+.error-log {
+    max-height: 400px;
+    overflow-y: auto;
+    background: var(--dark-color);
+    color: var(--light-color);
+    padding: 15px;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
+.error-entry {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-left: 3px solid var(--danger-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.error-entry .level {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+.error-entry .message {
+    margin: 5px 0;
+}
+
+.error-entry .details {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+}
+
+/* 请求日志样式 */
+.request-log {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.request-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr 80px 100px;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.request-entry:hover {
+    background: var(--light-color);
+}
+
+.request-entry .method {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.request-entry .url {
+    word-break: break-all;
+}
+
+.request-entry .status {
+    text-align: center;
+}
+
+.request-entry .time {
+    text-align: right;
+    color: var(--secondary-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .monitor-dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    .monitor-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .request-entry {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+    
+    .request-entry .method,
+    .request-entry .status,
+    .request-entry .time {
+        text-align: left;
+    }
+} 

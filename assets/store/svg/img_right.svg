@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="126px" height="20px" viewBox="0 0 126 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>img_right</title>
+    <defs>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#BC550D" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#BC550D" stop-opacity="0.304923104" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#BC550D" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#BC550D" stop-opacity="0.217976603" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-3">
+            <stop stop-color="#BC550D" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#BC550D" stop-opacity="0.144947826" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="开通分销" transform="translate(-468.000000, -499.000000)">
+            <g id="编组-15" transform="translate(468.000000, 499.000000)">
+                <g id="img_right" transform="translate(63.000000, 10.000000) scale(-1, 1) translate(-63.000000, -10.000000) ">
+                    <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="0" width="126" height="4" rx="2"></rect>
+                    <rect id="矩形备份-2" fill="url(#linearGradient-2)" opacity="0.67553493" x="0" y="8" width="126" height="4" rx="2"></rect>
+                    <rect id="矩形备份-3" fill="url(#linearGradient-3)" opacity="0.453611101" x="0" y="16" width="126" height="4" rx="2"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

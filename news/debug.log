@@ -1,0 +1,31 @@
+detail.php start: 2025-06-04 00:56:51
+common.php loaded
+SQL: SELECT * FROM `shua_news` WHERE id=10
+detail.php start: 2025-06-04 01:02:18
+common.php loaded
+SQL: SELECT * FROM `shua_news` WHERE id=12
+detail.php start: 2025-06-04 01:02:24
+common.php loaded
+SQL: SELECT * FROM `shua_news` WHERE id=14
+detail.php start: 2025-06-04 02:13:11
+common.php loaded
+SQL: SELECT * FROM `shua_news` WHERE id=5
+2025-06-04 19:47:40 - Script started
+2025-06-04 19:47:43 - Script started
+2025-06-04 19:52:08 - Script started
+2025-06-04 19:52:09 - Script started
+2025-06-04 19:52:11 - Script started
+2025-06-04 19:55:09 - Script started
+2025-06-04 19:55:10 - Script started
+2025-06-04 19:55:13 - Script started
+2025-06-04 19:55:18 - Script started
+2025-06-04 19:55:23 - Script started
+2025-06-04 20:01:41 - Script started
+2025-06-04 20:01:43 - Script started
+2025-06-04 20:01:46 - Script started
+2025-06-04 20:01:47 - Script started
+2025-06-04 20:01:55 - Script started
+2025-06-04 20:02:08 - Script started
+2025-06-04 20:02:11 - Script started
+2025-06-04 20:06:27 - Script started
+2025-06-04 20:06:28 - Script started

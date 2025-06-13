@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_yuming</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="开通分销" transform="translate(-420.000000, -964.000000)">
+            <g id="2备份" transform="translate(39.000000, 964.000000)">
+                <g id="站点用户管理备份" transform="translate(349.000000, 0.000000)">
+                    <g id="icon_yuming" transform="translate(32.000000, 0.000000)">
+                        <circle id="椭圆形备份-7" fill="#FFF4EE" cx="45" cy="45" r="45"></circle>
+                        <ellipse id="椭圆形" stroke="#FF6F26" stroke-width="3" transform="translate(45.000000, 45.000000) rotate(90.000000) translate(-45.000000, -45.000000) " cx="45" cy="45" rx="4.5" ry="16.5"></ellipse>
+                        <ellipse id="椭圆形" stroke="#303133" stroke-width="3" cx="45" cy="45" rx="4.5" ry="16.5"></ellipse>
+                        <circle id="椭圆形" stroke="#303133" stroke-width="3" cx="45" cy="45" r="16.5"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

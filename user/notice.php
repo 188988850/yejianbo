@@ -1,0 +1,1 @@
+$sql = "SELECT * FROM shua_notice WHERE status=1 ORDER BY id DESC LIMIT 10"; 

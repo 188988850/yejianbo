@@ -1,0 +1,5 @@
+2025-04-27 05:28:01 [INFO] 尝试连接数据库: mysql:host=localhost;port=3306;dbname=xinfaka;charset=utf8mb4
+2025-04-27 05:28:01 [INFO] 数据库连接成功
+2025-04-27 05:28:01 [INFO] 尝试登录: 用户名=18888955100
+2025-04-27 05:28:01 [INFO] 尝试查询用户表: shua_user
+2025-04-27 05:28:01 [ERROR] 错误: 用户表 shua_user 不存在

@@ -1,0 +1,1 @@
+$sql = "SELECT * FROM shua_money WHERE uid='{$userrow['uid']}' ORDER BY id DESC LIMIT 20"; 

@@ -1,0 +1,18 @@
+[
+    {
+        "name": "heimuer.tv-json国内",
+        "url": "https:\/\/json02.heimuer.xyz\/api.php\/provide\/vod\/?ac=list"
+    },
+    {
+        "name": "heimuer.tv-xml国内",
+        "url": "https:\/\/xml02.heimuer.xyz\/api.php\/provide\/vod\/at\/xml\/?ac=list"
+    },
+    {
+        "name": "heimuer.tv-json海外",
+        "url": "https:\/\/json.heimuer.xyz\/api.php\/provide\/vod\/?ac=list"
+    },
+    {
+        "name": "heimuer.tv-xml海外",
+        "url": "https:\/\/xml.heimuer.xyz\/api.php\/provide\/vod\/at\/xml\/?ac=list"
+    }
+]

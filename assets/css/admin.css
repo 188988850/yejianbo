@@ -1,0 +1,163 @@
+/* 性能监控页面样式 */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.metric-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.metric-card h3 {
+    color: #666;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.metric-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+.chart-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.chart-container h2 {
+    color: #333;
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.optimization-section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.optimization-section h2 {
+    color: #333;
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.suggestions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.suggestion-item {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+    border-left: 4px solid #007bff;
+    transition: transform 0.3s ease;
+}
+
+.suggestion-item:hover {
+    transform: translateX(5px);
+}
+
+.suggestion-item h3 {
+    color: #333;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.suggestion-item p {
+    color: #666;
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.priority {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.priority[data-priority="高"] {
+    background-color: #ff4444;
+    color: white;
+}
+
+.priority[data-priority="中"] {
+    background-color: #ffbb33;
+    color: white;
+}
+
+.priority[data-priority="低"] {
+    background-color: #00C851;
+    color: white;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .suggestions {
+        grid-template-columns: 1fr;
+    }
+    
+    .metric-card {
+        padding: 15px;
+    }
+    
+    .chart-container,
+    .optimization-section {
+        padding: 15px;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.metric-card,
+.chart-container,
+.optimization-section {
+    animation: fadeIn 0.5s ease-out;
+} 

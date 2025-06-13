@@ -1,0 +1,6 @@
+[
+    "https:\/\/json02.heimuer.xyz\/api.php\/provide\/vod\/?ac=list",
+    "https:\/\/xml02.heimuer.xyz\/api.php\/provide\/vod\/at\/xml\/?ac=list",
+    "https:\/\/json.heimuer.xyz\/api.php\/provide\/vod\/?ac=list",
+    "https:\/\/xml.heimuer.xyz\/api.php\/provide\/vod\/at\/xml\/?ac=list"
+]

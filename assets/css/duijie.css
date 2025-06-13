@@ -1,0 +1,94 @@
+.panel-primary {
+    margin-top: 20px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.panel-heading {
+    background: #337ab7 !important;
+    border: none;
+}
+
+.panel-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.input-group-addon {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+}
+
+.form-control {
+    height: 40px;
+    border: 1px solid #ddd;
+}
+
+.btn-primary {
+    height: 40px;
+    font-size: 16px;
+    background: #337ab7;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #286090;
+}
+
+.nav-tabs {
+    border-bottom: 2px solid #ddd;
+}
+
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.table > thead > tr > th {
+    background: #f5f5f5;
+    border-bottom: 2px solid #ddd;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.btn-info {
+    background: #5bc0de;
+    border: none;
+}
+
+.btn-info:hover {
+    background: #46b8da;
+}
+
+#goodsPager {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination > li > a {
+    color: #337ab7;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus {
+    background-color: #337ab7;
+    border-color: #337ab7;
+} 

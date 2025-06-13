@@ -1,0 +1,12 @@
+{
+    "b761812680ce148c": {
+        "mode": "daily",
+        "duration_limit": "20",
+        "auto_stop": true,
+        "time": "01:00",
+        "id": "b761812680ce148c",
+        "cron_expression": "00 01 * * *",
+        "next_time": 1748019600,
+        "next_time_str": "2025-05-24 01:00:00"
+    }
+}

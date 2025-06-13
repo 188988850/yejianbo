@@ -1,0 +1,9 @@
+在中间数据代码任意地方添加下面代码即可
+
+
+
+<li>
+	<a class="<?php echo checkIfActive('shoplist2')?>" href="./shoplist2.php?kw=1">
+		<i class="fa fa-align-left sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">下架商品</span>
+	</a>
+</li>
